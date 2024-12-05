@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ g.get('locale', 'es') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Página no encontrada') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh; /* Asegura que el contenido esté centrado verticalmente */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9; /* Color de fondo opcional */
+        }
+        
+        h1 {
+            font-size: 2.5em; /* Tamaño del texto del encabezado */
+            margin-bottom: 20px; /* Espacio entre el encabezado y la imagen */
+        }
+
+        img {
+            max-width: 90%; /* Asegura que la imagen no sea más grande que el 90% del ancho de la pantalla */
+            height: auto; /* Mantiene la proporción de la imagen */
+            margin-bottom: 20px; /* Espacio entre la imagen y el párrafo */
+        }
+
+        p {
+            font-size: 1.2em; /* Tamaño del texto del párrafo */
+            margin-bottom: 20px; /* Espacio entre el párrafo y el enlace */
+        }
+
+        a {
+            font-size: 1.2em; /* Tamaño del texto del enlace */
+            color: #007bff; /* Color del enlace */
+            text-decoration: none; /* Sin subrayado */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Subrayado al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>{{ _('404 - Página no encontrada') }}</h1>
+        <img src="{{ url_for('static', filename='images/mossubi-daily-ui-008.png') }}" alt="Página no encontrada">
+        <p>{{ _('Lo sentimos, la página que estás buscando no existe.') }}</p>
+        <a href="{{ url_for('carrito') }}">{{ _('Regresar a la página principal') }}</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Login') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+
+    <!-- Imagen encima del formulario -->
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png" alt="Imagen de registro" class="register-image" width="150" height="150">
+
+    </div>
+
+    <div class="form-container">
+        <h2>{{ _('Iniciar Sesión') }}</h2>
+        <!-- Bloque para mostrar los mensajes flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="flash {{ category }}">{{ _(message) }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="email">{{ _('Email:') }}</label>
+            <input type="email" name="email" required>
+            
+            <label for="password">{{ _('Contraseña:') }}</label>
+            <input type="password" name="password" required>
+            
+            <label for="rol">{{ _('Iniciar sesión como:') }}</label>
+            <select name="rol" required>
+                <option value="vendedor">{{ _('Comprador') }}</option>
+                <option value="comprador">{{ _('Vendedor') }}</option>
+            </select>
+            
+            <button type="submit">{{ _('Iniciar Sesión') }}</button>
+        </form>
+        <a href="{{ url_for('register') }}">{{ _('¿No tienes cuenta? Regístrate') }}</a>
+    </div>
+</body>
+</html>

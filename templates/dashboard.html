@@ -1,0 +1,446 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Inicio') }}{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div id="carousel1" class="container">
+        <h1 class="page-title">{{ _('Mercado de Productos Digitales') }}</h1>
+        <div class="login-button-container">
+            <a href="{{ url_for('login') }}" class="login-button">{{ _('Iniciar Sesión') }}</a>
+            <a href="{{ url_for('register') }}" class="login-button">{{ _('Registrar') }}</a>
+        </div>
+        
+        <div class="featured-products">
+            <h2>{{ _('Libros destacados') }}</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://opinionesproductosweb.com/wp-content/uploads/2024/09/frances.png" alt="Trading para Principiantes" class="product-image">
+                    <h3>{{ _('Tu desafio en 28 dias aprende frances basico') }}</h3>
+                    <p>$199.99</p>
+                    <p>{{ _('Agotado') }}</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQogUNknTT6RGqnjMAEcBqXHBodHRPiEvVFqQ&s" alt="Mastering the Market" class="product-image">
+                    <h3>{{ _('Combo MasterClass + Reto la energia del dinero') }}</h3>
+                    <p>$240.99</p>
+                    <p>{{ _('Agotado') }}</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://cdns-images.dzcdn.net/images/talk/a53f3174b5a87726b84e4084aa15aac7/0x1900-000000-80-0-0.jpg" alt="Inversiones Inteligentes" class="product-image">
+                    <h3>{{ _('Despertar consiente: una guia de meditacion para principiantes') }}</h3>
+                    <p>$79.79</p>
+                    <p>{{ _('Agotado') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!--====================================== CARROUSEL CON 3 IMAGENES MOVIENDOSE ================================== -->
+    <div id="carouselExample" class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://i.ytimg.com/vi/c1qPkdXtNHE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA-bhXEPpQLfpBHFWiCLQAT4UPhKA" alt="Slide 1">
+          </div>
+          <div class="carousel-item">
+            <img src="https://i.ytimg.com/vi/51335x0ZxFQ/maxresdefault.jpg" alt="Slide 2">
+          </div>
+          <div class="carousel-item">
+            <img src="https://i.ytimg.com/vi/haFedAYwTV8/maxresdefault.jpg" alt="Slide 3">
+          </div>
+        </div>
+        <button class="carousel-control carousel-control-prev" onclick="prevSlide()">❮</button>
+        <button class="carousel-control carousel-control-next" onclick="nextSlide()">❯</button>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 1==============?===  Historia de la creacion de la tienda =============================== -->
+    <div  id="carrusel" class="historia-tienda">
+        <h1>{{ _('Historia de Tienda Virtual') }}</h1>
+        <p>
+            {{ _('Tienda Virtual nació en el año 2024 como la visión de un grupo de emprendedores que buscaban revolucionar 
+            el comercio digital. Inspirados por el crecimiento exponencial de los productos digitales y el potencial 
+            de monetizar el conocimiento, el equipo comenzó a desarrollar una plataforma que conectara creadores de 
+            contenido con un público global. Lo que comenzó como un pequeño proyecto en un garaje, rápidamente se 
+            convirtió en un modelo de negocio escalable y exitoso, impulsado por la pasión por la innovación y la tecnología.') }}
+        </p>
+        <p>
+            {{ _('Desde su lanzamiento, Tienda Virtual ha facilitado a miles de creadores la posibilidad de vender cursos, 
+            ebooks, software y otros productos digitales, mientras proporciona a los compradores una experiencia de 
+            compra segura y personalizada. Hoy, la plataforma continúa evolucionando, adoptando nuevas tecnologías como 
+            inteligencia artificial y criptomonedas, con el objetivo de mantenerse como líder en el mercado de productos 
+            digitales y transformar la manera en que el mundo consume conocimiento.') }}
+        </p>
+    </div>
+
+    <br>
+    <br>
+
+     <!-- =================================================  CONTENEDOR DE LAS PREGUNTAS FRECUENTES   ==========================================================-->
+    <div id="carrusel1" class="accordion">
+    <h1 class="titulos-preguntas">{{ _('Preguntas Frecuentes - Tienda Virtual') }}</h1>
+
+      <div class="accordion-item">
+        <div class="accordion-header">{{ _('¿Qué es una tienda virtual de productos digitales?') }}</div>
+        <div class="accordion-body">
+            <p>{{ _('Una tienda virtual de productos digitales es una plataforma en línea donde los usuarios pueden comprar y vender productos como libros electrónicos, cursos, software y otros productos descargables de forma rápida y sencilla.') }}</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">{{ _('¿Cómo puedo vender mis productos en la Tienda Virtual?') }}</div>
+        <div class="accordion-body">
+            <p>{{ _('Para vender tus productos, simplemente necesitas crear una cuenta de vendedor, subir tu producto digital y configurar los detalles de pago. Nuestra plataforma se encarga del resto.') }}</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">{{ _('¿Cuáles son los beneficios de usar la Tienda Virtual?') }}</div>
+        <div class="accordion-body">
+            <p>{{ _('Con Tienda Virtual, puedes acceder a un mercado global, procesar pagos de manera segura y tener herramientas de marketing integradas. Además, es fácil de usar, tanto para vendedores como para compradores.') }}</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">{{ _('¿Qué tipos de productos puedo vender en Tienda Virtual?') }}</div>
+        <div class="accordion-body">
+            <p>{{ _('Puedes vender cualquier tipo de producto digital que no infrinja las políticas de la plataforma, como ebooks, cursos online, música, software, plantillas y mucho más.') }}</p>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+
+    <div class="container">        
+        <div class="featured-products">
+
+        </div>
+    </div>
+    <style>
+
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .accordion {
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 1000px; /* Ancho ajustado a 1000px */
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #444;
+        }
+
+        .accordion-header {
+            background-color: #333;
+            padding: 15px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 18px;
+            color: #ddd;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #555;
+        }
+
+        .accordion-body {
+            padding: 15px;
+            display: none;
+            background-color: #444;
+            font-size: 16px;
+            color: #f1f1f1;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .accordion-body p {
+            margin: 0;
+        }
+
+        .accordion-item.active .accordion-body {
+            display: block;
+        }
+
+        .accordion-item.active .accordion-header {
+            background-color: #FFD700;
+            color: #121212;
+        }
+        body {
+            background-color: #222;
+            color: #ddd;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .historia-tienda {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #1c1c1c;
+            border: 2px solid #444;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            color: #f0f0f0;
+            line-height: 1.8;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .historia-tienda h1 {
+            font-size: 36px;
+            color: #f2ff00;  /* Neon green */
+            text-align: center;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(208, 255, 0, 0.965), 0 0 25px #ddff00f4;
+        }
+
+        .historia-tienda p {
+            font-size: 18px;
+            color: #ccc;
+            text-align: justify;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            transition: color 0.3s ease;
+        }
+
+        .historia-tienda p:hover {
+            color: #00FF7F;
+        }
+
+        .historia-tienda::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #444;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #00FF7F, #FF007F, #007FFF, #FF7F00);
+            background-size: 400% 400%;
+            animation: gradientMotion 5s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientMotion {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .historia-tienda p:last-of-type {
+            margin-bottom: 0;
+        }
+
+            /* Contenedor del carrusel */
+        .carousel {
+        position: relative;
+        width: 1000px; /* Ancho fijo */
+        margin: auto;
+        overflow: hidden;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        }
+
+        /* Carrusel interior */
+        .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        }
+
+        /* Elementos del carrusel */
+        .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+        }
+
+        /* Imagen del carrusel */
+        .carousel-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        }
+
+        /* Botones de control */
+        .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        z-index: 1;
+        border-radius: 50%;
+        }
+
+        .carousel-control-prev {
+        left: 10px;
+        }
+
+        .carousel-control-next {
+        right: 10px;
+        }
+        /* Estilos para el contenedor principal */
+        .container {
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://img.freepik.com/foto-gratis/textura-abstracta-brillo-negro_1048-8015.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            margin: auto;
+            color: white;
+        }
+
+        .page-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .welcome-text {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-button-container {
+            margin-bottom: 40px;
+        }
+
+        .login-button {
+            font-weight: bold;         /* Para poner el texto en negrita */
+            font-size: 14px;           /* Puedes ajustar el tamaño del texto */
+            padding: 10px 20px;        /* Ajusta el tamaño del botón */
+            background-color: #FFD700; /* Puedes cambiar el color de fondo */
+            color: #121212;            /* Color del texto */
+            border: 2px solid #FFD700; /* Borde más delgado */
+            border-radius: 5px;        /* Bordes redondeados */
+            text-decoration: none;     /* Elimina el subrayado */
+            transition: all 0.3s ease; /* Transición suave */
+        }
+
+        .login-button:hover {
+            background-color: #ffcc00; /* Cambia el color cuando el ratón pase sobre el botón */
+            border-color: #ffcc00;     /* Cambia el color del borde al hacer hover */
+        }
+
+        /* Estilos para los libros destacados */
+        .featured-products {
+            margin-top: 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: #777;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <script>
+        const carousel = document.querySelector('.carousel-inner');
+        const slides = document.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+        if (index < 0) {
+            currentIndex = slides.length - 1;
+        } else if (index >= slides.length) {
+            currentIndex = 0;
+        } else {
+            currentIndex = index;
+        }
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function prevSlide() {
+        showSlide(currentIndex - 1);
+        }
+
+        function nextSlide() {
+        showSlide(currentIndex + 1);
+        }
+
+        // Automático: Mover el carrusel cada 3 segundos
+        setInterval(() => {
+        nextSlide();
+        }, 3000); // 3000 ms = 3 segundos
+
+        const accItems = document.querySelectorAll('.accordion-item');
+
+        accItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+{% endblock %}

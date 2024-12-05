@@ -1,0 +1,98 @@
+.productos-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual ancho */
+    gap: 20px; /* Espacio entre las tarjetas de productos */
+    padding: 20px;
+}
+
+.producto-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
+    padding: 15px;
+    background-color: #ffeb3b; /* Fondo amarillo */
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Efecto hover suave */
+}
+
+.producto-card:hover {
+    transform: scale(1.05); /* Efecto de agrandar ligeramente al pasar el mouse */
+}
+
+.producto-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Asegura que la imagen se ajuste al tamaño */
+}
+
+/* Formulario de registro y login */
+.form-container {
+    width: 60%; /* Ajusta el tamaño del contenedor */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-container button:hover {
+    background-color: #0056b3;
+}
+form input, form select {
+    width: 80%; /* Hace los campos de texto más pequeños que el contenedor */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para el botón */
+form button {
+    width: 80%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Enlace para registro */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-image {
+    width: 200px; /* Ajusta el tamaño según lo necesites */
+    height: auto;
+}

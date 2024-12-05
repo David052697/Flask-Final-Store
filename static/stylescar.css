@@ -1,0 +1,407 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/images/ZAHMECHUMBHQHP7OZR6NC2ZHMY.gif'); /* Ruta a tu imagen */
+    background-size: auto; /* Mantiene el tamaño original de la imagen */
+    background-position: top left; /* Posiciona la imagen en la esquina superior izquierda */
+    background-repeat: repeat; /* Hace que la imagen se repita en ambas direcciones */
+}
+
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+button, input[type="submit"] {
+    background-color: #c0392b;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #b92e29;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.card p {
+    color: #7f8c8d;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Carrito Emergente */
+#carritoEmergente {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 320px;
+    background-color: #fff;
+    border-left: 3px solid #3498db;
+    padding: 20px;
+    display: none;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+#mostrarCarrito {
+    position: fixed;
+    right: 15px;
+    bottom: 90px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#mostrarCarrito:hover {
+    background-color: #c0392b;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #000000;
+    color: white;
+}
+
+.acciones button {
+    margin-right: 5px;
+}
+
+.botones-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.botones-container form {
+    margin: 0;
+}
+
+.botones-container button {
+    width: 48%;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* ==========================================   Estilos para la barra de navegación      =========================*/
+.navbar {
+    background-color: #fff; /* Fondo blanco */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.navbar-title {
+    color: #000; /* Texto negro */
+    margin: 0;
+    transition: color 0.1s ease; /* Transición suave para el cambio de color */
+}
+
+/* ==================================     FORMATO PRODUCTOS AGREGADOS ======================================== */
+
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Ajusta el espacio entre los cards */
+    padding: 20px; /* Espacio alrededor de la sección */
+}
+
+.producto-card {
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #f1c40f; /* Color de fondo negro */
+    color: rgb(0, 0, 0); /* Color de texto blanco */
+    border-radius: 12px; /* Bordes redondeados */
+    padding: 15px; /* Espacio interno */
+    margin: 15px; /* Espacio externo */
+    width: 250px; /* Ancho fijo para las tarjetas */
+    text-align: center; /* Centrar el texto */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de hover */
+}
+
+.titulo-card1 {
+    font-family: 'Press Start 2P', cursive; /* Fuente retro, estilo de videojuego */
+    font-size: 24px; /* Tamaño de fuente más grande */
+    color: #ffcc00; /* Color de texto dorado */
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #ff5733; /* Sombra para dar un efecto 3D */
+    background: linear-gradient(90deg, rgba(255, 204, 0, 1), rgba(255, 57, 0, 1)); /* Degradado brillante */
+    padding: 10px; /* Espaciado interno */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 12px; /* Bordes redondeados */
+    margin: 10px 0; /* Espacio vertical */
+    text-align: center; /* Centrar el texto */
+    transition: transform 0.3s, color 0.3s; /* Efectos de transición */
+}
+
+.titulo-card1:hover {
+    transform: scale(1.1); /* Aumentar de tamaño al pasar el ratón */
+    color: #ffffff; /* Cambiar color de texto al blanco */
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #ffcc00; /* Cambiar sombra */
+}
+
+
+.producto-card:hover {
+    transform: translateY(-5px); /* Efecto al pasar el ratón */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.producto-imagen {
+    width: 100%; /* Ancho completo del contenedor */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+}
+
+.cantidad-input {
+    width: 50%; /* Ancho del input de cantidad */
+    margin: 10px 0; /* Espacio vertical */
+}
+
+
+
+
+
+/* ==================================     FORMATO CARRITO DE COMPRAS ======================================== */
+.agregar-carrito {
+    background-color: #e74c3c; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px; /* Espacio interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor tipo mano al pasar */
+    transition: background-color 0.3s ease; /* Efecto de hover */
+}
+
+.agregar-carrito:hover {
+    background-color: #c0392b; /* Color al pasar el ratón */
+}
+
+.titulo-container {
+    text-align: center; /* Centrar el texto */
+    margin: 20px 0; /* Espacio alrededor del contenedor */
+}
+
+.titulo-container h2 {
+    font-size: 2.5em; /* Tamaño de fuente grande */
+    background-color: #000000;
+    color: #fff7f7; /* Color atractivo */
+    animation: vibrar 0.5s infinite alternate; /* Animación de vibración */
+    display: inline-block; /* Asegura que se centre correctamente */
+}
+
+/* Animación de vibración */
+@keyframes vibrar {
+    0% { transform: translate(0); }
+    50% { transform: translate(-5px, 0); }
+    100% { transform: translate(5px, 0); }
+}
+
+/* Efecto de resplandor */
+.titulo-container h2:hover {
+    text-shadow: 0 0 20px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 204, 0, 0.7), 0 0 40px rgba(255, 204, 0, 0.5);
+    transition: text-shadow 0.3s ease; /* Suaviza el efecto */
+}
+
+/* ====================================     Contenedor del formulario      ======================================*/
+.formulario-producto {
+    background-color: #f1c40f; /* Color de fondo amarillo */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px; /* Ancho fijo para el contenedor */
+    margin: 0 auto; /* Centrado horizontal */
+    text-align: center; /* Centrado del texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s; /* Añadir efecto al pasar el mouse */
+}
+
+/* Efecto de elevación al pasar el mouse */
+.formulario-producto:hover {
+    transform: scale(1.05); /* Aumentar tamaño ligeramente */
+}
+
+/* Estilos de las etiquetas y los campos de entrada */
+.formulario-producto label {
+    display: block; /* Asegura que cada etiqueta esté en su propia línea */
+    margin-bottom: 5px; /* Espacio entre etiqueta y campo de entrada */
+    color: #000; /* Color de las letras negro para mejor contraste */
+    font-weight: bold; /* Negrita para las etiquetas */
+}
+
+.formulario-producto input[type="text"],
+.formulario-producto input[type="number"],
+.formulario-producto input[type="file"] {
+    width: 90%; /* Ancho del 90% del contenedor */
+    padding: 10px; /* Espacio interno */
+    margin: 0 auto 15px; /* Centrado horizontal y espacio entre campos */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 2px solid #000; /* Borde negro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para los campos */
+    transition: border-color 0.3s; /* Efecto al enfocar */
+}
+
+/* Cambia el color del borde al enfocar */
+.formulario-producto input[type="text"]:focus,
+.formulario-producto input[type="number"]:focus,
+.formulario-producto input[type="file"]:focus {
+    border-color: #e67e22; /* Color naranja al enfocar */
+    outline: none; /* Elimina el contorno por defecto */
+}
+
+/* Estilos del botón */
+.formulario-producto button {
+    background-color: #e74c3c; /* Botón de color rojo */
+    color: white; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efecto al pasar el mouse */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    margin-top: 10px; /* Espacio encima del botón */
+}
+
+.formulario-producto button:hover {
+    background-color: #c0392b; /* Color más oscuro al pasar el mouse */
+}
+
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Mantenerlo en una posición fija */
+    z-index: 1; /* Asegurarse de que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Habilitar el desplazamiento si es necesario */
+    background-color: rgb(0, 0, 0); /* Fondo negro */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% desde la parte superior y centrado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Puede ajustar el tamaño */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -1,0 +1,450 @@
+# Translations template for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-12-03 18:26-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: templates/404.html:6
+msgid "Página no encontrada"
+msgstr ""
+
+#: templates/404.html:50
+msgid "404 - Página no encontrada"
+msgstr ""
+
+#: templates/404.html:52
+msgid "Lo sentimos, la página que estás buscando no existe."
+msgstr ""
+
+#: templates/404.html:53
+msgid "Regresar a la página principal"
+msgstr ""
+
+#: templates/base.html:6 templates/base.html:216 templates/base2.html:6
+#: templates/base2.html:229 templates/base3.html:6 templates/base3.html:236
+msgid "La mejor tienda virtual del mundo"
+msgstr ""
+
+#: templates/base.html:189 templates/base2.html:190 templates/base3.html:190
+msgid "Tienda Virtual"
+msgstr ""
+
+#: templates/base.html:195 templates/dashboard.html:3
+msgid "Inicio"
+msgstr ""
+
+#: templates/base.html:198
+msgid "Productos"
+msgstr ""
+
+#: templates/base.html:201
+msgid "Sobre Nosotros"
+msgstr ""
+
+#: templates/base.html:204
+msgid "FAQ"
+msgstr ""
+
+#: templates/base2.html:210
+msgid "Usuario"
+msgstr ""
+
+#: templates/base2.html:210
+msgid "Rol"
+msgstr ""
+
+#: templates/base2.html:212 templates/login.html:43 templates/register.html:35
+msgid "Vendedor"
+msgstr ""
+
+#: templates/base2.html:220 templates/base3.html:227
+msgid "Cerrar sesión"
+msgstr ""
+
+#: templates/base3.html:216 templates/email.html:90
+msgid "Usuario:"
+msgstr ""
+
+#: templates/base3.html:216 templates/email.html:93
+msgid "Rol:"
+msgstr ""
+
+#: templates/base3.html:218 templates/login.html:42 templates/register.html:34
+msgid "Comprador"
+msgstr ""
+
+#: templates/carrito.html:3
+msgid "Dashboard del Vendedor"
+msgstr ""
+
+#: templates/carrito.html:27
+msgid "Ver Carrito"
+msgstr ""
+
+#: templates/carrito.html:30
+msgid "Productos en el Carrito"
+msgstr ""
+
+#: templates/carrito.html:34 templates/comprador_dashboard.html:174
+msgid "Imagen"
+msgstr ""
+
+#: templates/carrito.html:35 templates/comprador_dashboard.html:175
+msgid "Nombre"
+msgstr ""
+
+#: templates/carrito.html:36 templates/carrito.html:104
+#: templates/carrito.html:134 templates/comprador_dashboard.html:176
+msgid "Cantidad"
+msgstr ""
+
+#: templates/carrito.html:37 templates/carrito.html:131
+#: templates/comprador_dashboard.html:177
+msgid "Precio"
+msgstr ""
+
+#: templates/carrito.html:38 templates/carrito.html:106
+msgid "Total"
+msgstr ""
+
+#: templates/carrito.html:39 templates/comprador_dashboard.html:178
+msgid "Acciones"
+msgstr ""
+
+#: templates/carrito.html:53 templates/comprador_dashboard.html:192
+msgid "Modificar"
+msgstr ""
+
+#: templates/carrito.html:55 templates/comprador_dashboard.html:190
+#: templates/comprador_dashboard.html:213
+msgid "Eliminar"
+msgstr ""
+
+#: templates/carrito.html:65
+msgid "Vaciar Carrito"
+msgstr ""
+
+#: templates/carrito.html:68
+msgid "Proceder al Pago"
+msgstr ""
+
+#: templates/carrito.html:72 templates/carrito.html:121
+msgid "Cerrar"
+msgstr ""
+
+#: templates/carrito.html:79
+msgid "¡Tienda Don Benito S.A!"
+msgstr ""
+
+#: templates/carrito.html:80
+msgid "¡Gracias por tu compra!"
+msgstr ""
+
+#: templates/carrito.html:84
+msgid "Factura"
+msgstr ""
+
+#: templates/carrito.html:87
+msgid "Total a pagar"
+msgstr ""
+
+#: templates/carrito.html:92
+msgid "Nombre del cliente"
+msgstr ""
+
+#: templates/carrito.html:98
+msgid "Detalles de la compra"
+msgstr ""
+
+#: templates/carrito.html:103
+msgid "Producto"
+msgstr ""
+
+#: templates/carrito.html:105
+msgid "Precio Unitario"
+msgstr ""
+
+#: templates/carrito.html:132
+msgid "Cantidad disponible"
+msgstr ""
+
+#: templates/carrito.html:136
+msgid "Agregar al Carrito"
+msgstr ""
+
+#: templates/carrito.html:148
+msgid "anterior"
+msgstr ""
+
+#: templates/carrito.html:160
+msgid "Siguiente"
+msgstr ""
+
+#: templates/carrito.html:172 templates/comprador_dashboard.html:206
+msgid "Modificar Cantidad"
+msgstr ""
+
+#: templates/carrito.html:175
+msgid "Nueva Cantidad"
+msgstr ""
+
+#: templates/carrito.html:177
+msgid "Actualizar"
+msgstr ""
+
+#: templates/comprador_dashboard.html:3
+msgid "Dashboard del Comprador"
+msgstr ""
+
+#: templates/comprador_dashboard.html:199
+msgid "No hay productos disponibles."
+msgstr ""
+
+#: templates/comprador_dashboard.html:209
+#: templates/comprador_dashboard.html:236
+msgid "Cantidad:"
+msgstr ""
+
+#: templates/comprador_dashboard.html:212
+msgid "Agregar"
+msgstr ""
+
+#: templates/comprador_dashboard.html:233
+msgid "Nombre del Producto:"
+msgstr ""
+
+#: templates/comprador_dashboard.html:239
+msgid "Precio:"
+msgstr ""
+
+#: templates/comprador_dashboard.html:242
+msgid "Imagen:"
+msgstr ""
+
+#: templates/comprador_dashboard.html:245
+msgid "Agregar Producto"
+msgstr ""
+
+#: templates/comprador_dashboard.html:265
+msgid "La cantidad debe ser mayor que 0"
+msgstr ""
+
+#: templates/dashboard.html:10
+msgid "Mercado de Productos Digitales"
+msgstr ""
+
+#: templates/dashboard.html:12 templates/login.html:21 templates/login.html:46
+msgid "Iniciar Sesión"
+msgstr ""
+
+#: templates/dashboard.html:13 templates/register.html:38
+msgid "Registrar"
+msgstr ""
+
+#: templates/dashboard.html:17
+msgid "Libros destacados"
+msgstr ""
+
+#: templates/dashboard.html:21
+msgid "Tu desafio en 28 dias aprende frances basico"
+msgstr ""
+
+#: templates/dashboard.html:23 templates/dashboard.html:29
+#: templates/dashboard.html:35
+msgid "Agotado"
+msgstr ""
+
+#: templates/dashboard.html:27
+msgid "Combo MasterClass + Reto la energia del dinero"
+msgstr ""
+
+#: templates/dashboard.html:33
+msgid "Despertar consiente: una guia de meditacion para principiantes"
+msgstr ""
+
+#: templates/dashboard.html:66
+msgid "Historia de Tienda Virtual"
+msgstr ""
+
+#: templates/dashboard.html:68
+msgid ""
+"Tienda Virtual nació en el año 2024 como la visión de un grupo de "
+"emprendedores que buscaban revolucionar \n"
+"            el comercio digital. Inspirados por el crecimiento "
+"exponencial de los productos digitales y el potencial \n"
+"            de monetizar el conocimiento, el equipo comenzó a desarrollar"
+" una plataforma que conectara creadores de \n"
+"            contenido con un público global. Lo que comenzó como un "
+"pequeño proyecto en un garaje, rápidamente se \n"
+"            convirtió en un modelo de negocio escalable y exitoso, "
+"impulsado por la pasión por la innovación y la tecnología."
+msgstr ""
+
+#: templates/dashboard.html:75
+msgid ""
+"Desde su lanzamiento, Tienda Virtual ha facilitado a miles de creadores "
+"la posibilidad de vender cursos, \n"
+"            ebooks, software y otros productos digitales, mientras "
+"proporciona a los compradores una experiencia de \n"
+"            compra segura y personalizada. Hoy, la plataforma continúa "
+"evolucionando, adoptando nuevas tecnologías como \n"
+"            inteligencia artificial y criptomonedas, con el objetivo de "
+"mantenerse como líder en el mercado de productos \n"
+"            digitales y transformar la manera en que el mundo consume "
+"conocimiento."
+msgstr ""
+
+#: templates/dashboard.html:88
+msgid "Preguntas Frecuentes - Tienda Virtual"
+msgstr ""
+
+#: templates/dashboard.html:91
+msgid "¿Qué es una tienda virtual de productos digitales?"
+msgstr ""
+
+#: templates/dashboard.html:93
+msgid ""
+"Una tienda virtual de productos digitales es una plataforma en línea "
+"donde los usuarios pueden comprar y vender productos como libros "
+"electrónicos, cursos, software y otros productos descargables de forma "
+"rápida y sencilla."
+msgstr ""
+
+#: templates/dashboard.html:97
+msgid "¿Cómo puedo vender mis productos en la Tienda Virtual?"
+msgstr ""
+
+#: templates/dashboard.html:99
+msgid ""
+"Para vender tus productos, simplemente necesitas crear una cuenta de "
+"vendedor, subir tu producto digital y configurar los detalles de pago. "
+"Nuestra plataforma se encarga del resto."
+msgstr ""
+
+#: templates/dashboard.html:103
+msgid "¿Cuáles son los beneficios de usar la Tienda Virtual?"
+msgstr ""
+
+#: templates/dashboard.html:105
+msgid ""
+"Con Tienda Virtual, puedes acceder a un mercado global, procesar pagos de"
+" manera segura y tener herramientas de marketing integradas. Además, es "
+"fácil de usar, tanto para vendedores como para compradores."
+msgstr ""
+
+#: templates/dashboard.html:109
+msgid "¿Qué tipos de productos puedo vender en Tienda Virtual?"
+msgstr ""
+
+#: templates/dashboard.html:111
+msgid ""
+"Puedes vender cualquier tipo de producto digital que no infrinja las "
+"políticas de la plataforma, como ebooks, cursos online, música, software,"
+" plantillas y mucho más."
+msgstr ""
+
+#: templates/email.html:6
+msgid "Gracias por tu Registro"
+msgstr ""
+
+#: templates/email.html:81
+msgid "¡Bienvenido,"
+msgstr ""
+
+#: templates/email.html:86
+msgid "Gracias por registrarte en Tienda Virtual"
+msgstr ""
+
+#: templates/email.html:87
+msgid ""
+"Estamos encantados de tenerte con nosotros. Aquí están los detalles de tu"
+" cuenta:"
+msgstr ""
+
+#: templates/email.html:91 templates/login.html:34
+msgid "Email:"
+msgstr ""
+
+#: templates/email.html:92 templates/login.html:37 templates/register.html:29
+msgid "Contraseña:"
+msgstr ""
+
+#: templates/email.html:96
+msgid ""
+"Recuerda que puedes acceder a tu cuenta en cualquier momento con las "
+"credenciales mencionadas arriba."
+msgstr ""
+
+#: templates/email.html:97
+msgid ""
+"Si tienes algún problema o necesitas ayuda, no dudes en ponerte en "
+"contacto con nosotros."
+msgstr ""
+
+#: templates/email.html:102 templates/email1.html:54
+msgid "Tienda Virtual. Todos los derechos reservados."
+msgstr ""
+
+#: templates/email1.html:6 templates/email1.html:43
+msgid "Notificación de Inicio de Sesión"
+msgstr ""
+
+#: templates/email1.html:46
+msgid "Hola"
+msgstr ""
+
+#: templates/email1.html:47
+msgid "Has iniciado sesión exitosamente en la plataforma Tienda Virtual."
+msgstr ""
+
+#: templates/email1.html:49
+msgid ""
+"Si no fuiste tú quien inició sesión, por favor, comunicate con nosotros "
+"lo antes posible"
+msgstr ""
+
+#: templates/login.html:6
+msgid "Login"
+msgstr ""
+
+#: templates/login.html:40
+msgid "Iniciar sesión como:"
+msgstr ""
+
+#: templates/login.html:48
+msgid "¿No tienes cuenta? Regístrate"
+msgstr ""
+
+#: templates/register.html:6 templates/register.html:21
+msgid "Registro de Usuario"
+msgstr ""
+
+#: templates/register.html:23
+msgid "Nombre de usuario:"
+msgstr ""
+
+#: templates/register.html:26
+msgid "Correo electrónico:"
+msgstr ""
+
+#: templates/register.html:32
+msgid "Selecciona Rol:"
+msgstr ""
+
+#: templates/register.html:40
+msgid "¿Ya tienes una cuenta? Inicia sesión"
+msgstr ""
+

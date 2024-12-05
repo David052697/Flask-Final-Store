@@ -1,0 +1,290 @@
+{% extends 'base2.html' %}
+
+{% block title %}{{ _('Dashboard del Comprador') }}{% endblock %}
+
+{% block content %}
+<style>
+    /* Estilo del contenedor de productos */
+    .productos-container {
+        margin: 20px auto;
+        padding: 15px;
+        border: 2px solid #e1b500; /* Borde de color amarillo */
+        border-radius: 10px;
+        background: linear-gradient(135deg, #f5c42d, #ff6f61); /* De amarillo a tomate */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra en 3D */
+        width: 90%;
+        max-width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Estilo de la tabla de productos */
+    .product-table {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+        border-collapse: collapse;
+        margin-top: 10px; /* Espacio superior */
+        height: 100%; /* Ocupa toda la altura del contenedor */
+    }
+
+    .product-table th, .product-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .product-table th {
+        background-color: #e1b500; /* Encabezado de color amarillo */
+        color: white;
+        border-top: 2px solid #c82333; /* Línea superior para un efecto más marcado */
+    }
+
+    .product-table tr:nth-child(even) {
+        background-color: #ffe4b5; /* Color de fondo alterno */
+    }
+
+    .product-table tr:hover {
+        background-color: #bfac1d; /* Color de fondo al pasar el mouse */
+    }
+
+    .product-table img {
+        width: 100px; /* Ajuste del tamaño de la imagen */
+        height: 100px;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+    }
+
+    /* Estilo de los botones de acciones de producto */
+    .product-actions button {
+        margin: 2px;
+    }
+
+    /* Estilo de la ventana emergente */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 190px;
+        padding: 20px;
+        background-color: #fff;
+        border: 2px solid #e1b500;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #555;
+    }
+
+    .close-button:hover {
+        color: #000;
+    }
+
+    .modal.active {
+        display: block;
+    }
+
+    .modal button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .modal button.agregar {
+        background-color: #28a745; /* Verde para agregar */
+        color: white;
+    }
+
+    .modal button.eliminar {
+        background-color: #dc3545; /* Rojo para eliminar */
+        color: white;
+    }
+
+    .modal button:hover {
+        opacity: 0.8;
+    }
+
+    .agregarr {
+        background-color: #ff4d4d; /* Rojo suave */
+        color: white;             /* Texto blanco */
+        border: none;             /* Sin borde */
+        border-radius: 5px;       /* Bordes redondeados */
+        font-size: 19px;          /* Texto más pequeño */
+        padding: 5px 10px;        /* Ajustar espacio interno */
+        width: auto;              /* Ajustar al contenido */
+        height: auto;             /* Ajustar al contenido */
+        cursor: pointer;          /* Cambiar el cursor al pasar */
+        transition: background-color 0.3s ease; /* Transición suave */
+    }
+
+    .agregarr:hover {
+        background-color: #d93636; /* Cambiar color al pasar el ratón */
+    }
+    .flash-messages {
+        position: absolute; /* Cambia de fixed a absolute */
+        top: 8%; /* Se ubicará debajo del nav */
+        left: 0;
+        right: 0;
+        margin: auto; /* Centra el mensaje horizontalmente */
+        background-color: #28a745; /* Verde */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        text-align: center;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+    }
+
+    .flash-messages.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+
+</style>
+
+<br>
+<br>
+
+<!-- Contenedor de productos y paginación -->
+<div class="productos-container">
+    {% if productos %}
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>{{ _('Imagen') }}</th>
+                    <th>{{ _('Nombre') }}</th>
+                    <th>{{ _('Cantidad') }}</th>
+                    <th>{{ _('Precio') }}</th>
+                    <th>{{ _('Acciones') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td><img src="{{ url_for('static', filename='images/' + producto['imagen']) }}" alt="{{ producto['nombre'] }}"></td>
+                    <td>{{ producto['nombre'] }}</td>
+                    <td>{{ producto['cantidad'] }}</td>
+                    <td>{{ producto['precio'] }} COP</td>
+                    <td class="product-actions">
+                        <form action="{{ url_for('eliminar_producto', id=producto['id']) }}" method="POST" style="display:inline;">
+                            <button class="agregarr" type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?');">{{ _('Eliminar') }}</button>
+                        </form>
+                        <button class="agregarr" onclick="showModal({{ producto['id'] }})">{{ _('Modificar') }}</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{{ _('No hay productos disponibles.') }}</p>
+    {% endif %}
+</div>
+
+<!-- Modal para modificar la cantidad -->
+<div class="modal" id="modalModificar">
+    <button class="close-button" onclick="cerrarModal()">✖</button>
+    <h4>{{ _('Modificar Cantidad') }}</h4>
+    <form id="formModificar" method="POST">
+        <input type="hidden" id="productoId" name="producto_id">
+        <label for="cantidad">{{ _('Cantidad:') }}</label>
+        <input type="number" id="cantidad" name="cantidad" min="1" required>
+        <div>
+            <button type="button" class="agregar" onclick="modificarCantidad('agregar')">{{ _('Agregar') }}</button>
+            <button type="button" class="eliminar" onclick="modificarCantidad('eliminar')">{{ _('Eliminar') }}</button>
+        </div>
+    </form>
+</div>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages" id="flashMessage">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- Formulario para agregar productos -->
+<form action="{{ url_for('comprador_dashboard') }}" method="POST" enctype="multipart/form-data" class="formulario-producto">
+    <label for="nombre">{{ _('Nombre del Producto:') }}</label>
+    <input type="text" name="nombre" required pattern="[A-Za-z\s]+" title="El nombre solo debe contener letras.">
+    
+    <label for="cantidad">{{ _('Cantidad:') }}</label>
+    <input type="number" name="cantidad" min="1" required>
+    
+    <label for="precio">{{ _('Precio:') }}</label>
+    <input type="number" step="0.01" name="precio" required min="0">
+    
+    <label for="imagen">{{ _('Imagen:') }}</label>
+    <input type="file" name="imagen" accept="image/*" required>
+    
+    <button type="submit">{{ _('Agregar Producto') }}</button>
+</form>
+
+
+<br>
+<br>
+
+<!-- Script para manejar la ventana emergente y modificar cantidad -->
+<script>
+    function showModal(productId) {
+        document.getElementById('productoId').value = productId;
+        document.getElementById('modalModificar').classList.add('active');
+    }
+
+    function modificarCantidad(accion) {
+        const form = document.getElementById('formModificar');
+        const productoId = form.producto_id.value;
+        const cantidad = parseInt(form.cantidad.value);
+
+        if (cantidad <= 0) {
+            alert("{{ _('La cantidad debe ser mayor que 0') }}");
+            return;
+        }
+
+        form.action = '/modificar_producto/' + productoId + '/' + accion;
+        form.submit();
+    }
+
+    function cerrarModal() {
+        const modal = document.getElementById('modalModificar');
+        modal.style.display = 'none';
+    }
+
+
+        // Ocultar el mensaje flash después de 3 segundos
+    document.addEventListener('DOMContentLoaded', () => {
+        const flashMessage = document.getElementById('flashMessage');
+        if (flashMessage && flashMessage.textContent.trim() !== "") {
+            setTimeout(() => {
+                flashMessage.classList.add('hidden');
+            }, 3000);
+        }
+    });
+</script>
+
+{% endblock %}

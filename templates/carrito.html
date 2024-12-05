@@ -1,0 +1,405 @@
+{% extends 'base3.html' %} <!-- Extiende la plantilla base para heredar su estructura -->
+
+{% block title %}{{ _('Dashboard del Vendedor') }}{% endblock %} <!-- Define el título de la página -->
+
+{% block content %}
+    <!-- ============================= Modal de pago exitoso ============================= -->
+    <div id="pagoModal" class="modal"> <!-- Modal que aparece al realizar un pago -->
+        <div class="modal-content">
+            <span class="close" onclick="closePagoModal()">&times;</span> <!-- Botón para cerrar el modal -->
+            <h2 id="pagoMensaje"></h2> <!-- Mensaje que mostrará el resultado del pago -->
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ _(message) }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- ============================= Carrito emergente ============================= -->
+    <button id="mostrarCarrito">🛒 {{ _('Ver Carrito') }}</button> <!-- Botón para mostrar el carrito -->
+
+    <div id="carritoEmergente" style="display: none;">
+        <h3>{{ _('Productos en el Carrito') }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ _('Imagen') }}</th>
+                    <th>{{ _('Nombre') }}</th>
+                    <th>{{ _('Cantidad') }}</th>
+                    <th>{{ _('Precio') }}</th>
+                    <th>{{ _('Total') }}</th>
+                    <th>{{ _('Acciones') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carrito %}
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename='images/' + item['imagen']) }}" alt="{{ item['nombre'] }}" style="width: 50px; height: 50px;">
+                    </td>
+                    <td>{{ item['nombre'] }}</td>
+                    <td>{{ item['cantidad'] }}</td>
+                    <td>{{ item['precio'] }} COP</td>
+                    <td>{{ item['precio'] * item['cantidad'] }} COP</td>
+                    <td class="acciones">
+                        <button onclick="openModal('{{ item['nombre'] }}', {{ item['cantidad'] }})">{{ _('Modificar') }}</button>
+                        <form action="{{ url_for('eliminar', nombre=item['nombre']) }}" method="POST" style="display: inline;">
+                            <button type="submit">{{ _('Eliminar') }}</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="botones-container">
+            <form action="{{ url_for('vaciar') }}" method="POST">
+                <button type="submit">{{ _('Vaciar Carrito') }}</button>
+            </form>
+            <form action="{{ url_for('pagar') }}" method="POST" onsubmit="showPagoModal(event)">
+                <button type="submit">{{ _('Proceder al Pago') }}</button>
+            </form>
+        </div>
+        
+        <button onclick="cerrarCarrito()">{{ _('Cerrar') }}</button> <!-- Botón para cerrar el carrito -->
+    </div>
+
+    <!-- ============================= Modal de pago exitoso ============================= -->
+    <div id="modal" class="modal" style="display: {% if pago_exitoso %}block{% else %}none{% endif %};">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+            <div class="success-message">{{ _('¡Tienda Don Benito S.A!') }}</div>
+            <p class="success-message">{{ _('¡Gracias por tu compra!') }}</p>
+            
+            <table class="invoice-header">
+                <tr>
+                    <th>{{ _('Factura') }}:</th>
+                </tr>
+                <tr>
+                    <th>{{ _('Total a pagar') }}</th>
+                    <td>${{ session['total_pago'] }}</td>
+                </tr>
+                {% if session['user_id'] %}
+                <tr>
+                    <th>{{ _('Nombre del cliente') }}</th>
+                    <td>{{ session['user_name'] }}</td>
+                </tr>
+                {% endif %}
+            </table>
+            
+            <h3 class="purchase-details">{{ _('Detalles de la compra') }}:</h3>
+            <ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ _('Producto') }}</th>
+                            <th>{{ _('Cantidad') }}</th>
+                            <th>{{ _('Precio Unitario') }}</th>
+                            <th>{{ _('Total') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in session['detalle_compra'] %}
+                        <tr>
+                            <td>{{ item['nombre'] }}</td>
+                            <td>{{ item['cantidad'] }}</td>
+                            <td>${{ item['precio'] }}</td>
+                            <td>${{ item['cantidad'] * item['precio'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </ul>
+            <button onclick="document.getElementById('modal').style.display='none'">{{ _('Cerrar') }}</button>
+        </div>
+    </div>
+
+    <!-- ============================= Mostrar productos disponibles ============================= -->
+    <div class="productos-container row">
+        {% for item in inventario %}
+        <div class="producto-card col-md-4">
+            <img src="{{ url_for('static', filename='images/' + item['imagen']) }}" alt="{{ item['nombre'] }}" style="width: 100px; height: 100px;">
+            <h5 class="titulo-card">{{ item['nombre'] }}</h5>
+            <p>{{ _('Precio') }}: {{ item['precio'] }} COP</p>
+            <p>{{ _('Cantidad disponible') }}: {{ item['cantidad'] }}</p>
+            <form action="{{ url_for('agregar_al_carrito', nombre=item['nombre']) }}" method="POST">
+                <label for="cantidad">{{ _('Cantidad') }}:</label>
+                <input type="number" name="cantidad" min="1" max="{{ item['cantidad'] }}" required>
+                <button type="submit">{{ _('Agregar al Carrito') }}</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ============================= Paginación ============================= -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if current_page > 1 %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('carrito', page=current_page - 1) }}">Previous</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">{{ _('anterior') }}</a></li>
+            {% endif %}
+            
+            {% for page_num in range(1, total_pages + 1) %}
+            <li class="page-item {% if page_num == current_page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('carrito', page=page_num) }}">{{ page_num }}</a>
+            </li>
+            {% endfor %}
+            
+            {% if current_page < total_pages %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('carrito', page=current_page + 1) }}">Next</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">{{ _('Siguiente') }}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+
+    <!-- ============================= Modal para modificar cantidad en el carrito ============================= -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>{{ _('Modificar Cantidad') }}</h2>
+            <form id="modalForm" action="{{ url_for('modificar') }}" method="POST">
+                <input type="hidden" name="nombre" id="modalNombre" value="">
+                <label for="modalCantidad">{{ _('Nueva Cantidad') }}</label>
+                <input type="number" name="cantidad" id="modalCantidad" min="1" required>
+                <button type="submit">{{ _('Actualizar') }}</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================= Mensajes de error ============================= -->
+    {% if error %}
+    <div class="error">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <!-- ============================= JavaScript para alternar colores, abrir y cerrar modales ============================= -->
+    <script>
+        let isBlack = true;
+        const navbarTitle = document.querySelector('.navbar-title');
+
+        setInterval(() => {
+            if (isBlack) {
+                navbarTitle.style.color = '#fff';
+                navbarTitle.parentElement.style.backgroundColor = '#000';
+            } else {
+                navbarTitle.style.color = '#000';
+                navbarTitle.parentElement.style.backgroundColor = '#fff';
+            }
+            isBlack = !isBlack;
+        }, 2000);
+
+        function openModal(nombre, cantidad) {
+            document.getElementById('modalNombre').value = nombre;
+            document.getElementById('modalCantidad').value = cantidad;
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        function showPagoModal(event) {
+            event.preventDefault();
+            var carrito = {{ carrito|length }};
+            if (carrito > 0) {
+                document.getElementById('pagoMensaje').innerText = "¡Pago exitoso!";
+                document.getElementById('pagoModal').style.display = "block";
+                setTimeout(() => {
+                    event.target.submit();
+                }, 1000);
+            } else {
+                document.getElementById('pagoMensaje').innerText = "No hay productos que pagar.";
+                document.getElementById('pagoModal').style.display = "block";
+            }
+        }
+
+        function closePagoModal() {
+            document.getElementById('pagoModal').style.display = "none";
+        }
+
+        document.getElementById('mostrarCarrito').onclick = function() {
+            var carritoEmergente = document.getElementById('carritoEmergente');
+            carritoEmergente.style.display = carritoEmergente.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('carritoEmergente').style.display = 'none';
+        }
+
+        function hideAlert(alertElement) {
+            setTimeout(function() {
+                alertElement.style.opacity = 0; // Hace que la alerta se desvanezca
+            }, 2000); // Espera 2 segundos antes de empezar a desvanecer
+        }
+
+        // Selecciona todas las alertas
+        const alerts = document.querySelectorAll('.alert');
+
+        // Aplica la función a cada alerta
+        alerts.forEach(function(alert) {
+            hideAlert(alert);
+        });
+    </script>
+
+    <style>
+
+        /* Estilos para el contenedor de la paginación */
+        .pagination {
+            display: flex;
+            justify-content: center; /* Centra la paginación en la página */
+            margin-top: 30px;
+        }
+
+        /* Estilos para los elementos de la página */
+        .page-item {
+            margin: 0 5px;
+        }
+
+        /* Estilos para los enlaces de las páginas */
+        .page-link {
+            background-color: #FFBB00; /* Color de fondo dorado */
+            color: #121212; /* Color del texto */
+            border: 2px solid #FFBB00; /* Borde dorado */
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            font-weight: bold; /* Negrita */
+            font-size: 16px; /* Tamaño de texto */
+            transition: all 0.3s ease; /* Transición suave para los efectos */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+
+        .page-link:hover {
+            background-color: #FFA500; /* Cambia el color de fondo al pasar el mouse */
+            color: #fff; /* Cambia el color del texto */
+            border-color: #FFA500; /* Cambia el borde al pasar el mouse */
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #E0E0E0; /* Fondo gris cuando está deshabilitado */
+            color: #A0A0A0; /* Texto gris */
+            border-color: #E0E0E0; /* Borde gris */
+        }
+
+        .page-item.active .page-link {
+            background-color: #FF9000; /* Fondo naranja cuando la página está activa */
+            color: white; /* Texto blanco */
+            border-color: #FF9000; /* Borde naranja */
+            font-weight: bold;
+        }
+
+        /* Fin del contenedor nuevo ================================================= */
+        .invoice-header {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .invoice-header th, .invoice-header td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .invoice-header th {
+            background-color: #f4f4f4;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .invoice-header td {
+            font-size: 14px;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .success-message {
+            text-align: center;
+            background: linear-gradient(to right, #909a90, #000000); /* Degradado verde a amarillo */
+            color: #fff; /* Texto en blanco para contrastar con el fondo */
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            font-family: 'Helvetica', sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para el cubo */
+        }
+
+        .user-box {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .purchase-details {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        .alert-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed; /* Fija el contenedor en la pantalla */
+            top: 50%; /* Centra verticalmente */
+            left: 50%; /* Centra horizontalmente */
+            transform: translate(-50%, -50%); /* Ajusta el desplazamiento para centrar */
+            max-width: 500px; /* Ancho máximo del contenedor */
+            width: 100%; /* Ancho adaptable */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: center; /* Centra el texto dentro de la alerta */
+            font-family: 'Roboto', Arial, sans-serif; /* Cambia la fuente aquí */
+            font-size: 20px; /* Tamaño de fuente más grande */
+            font-weight: bold; /* Hace la fuente en negrita */
+            color: #333; /* Color de la letra */
+            border: 2px solid; /* Borde alrededor de cada alerta */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar */
+            opacity: 1; /* Inicialmente visible */
+            transition: opacity 1s ease-out; /* Transición suave para desvanecerse */
+        }
+
+        .alert-success {
+            background-color: #28a745; /* Cambia el color de fondo */
+            color: #ffffff; /* Cambia el color de la letra */
+            border-color: #218838; /* Cambia el color del borde */
+        }
+
+        .alert-error {
+            background-color: #dc3545; /* Cambia el color de fondo */
+            color: #ffffff; /* Cambia el color de la letra */
+            border-color: #c82333; /* Cambia el color del borde */
+        }
+    </style>
+{% endblock %}
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ _('La mejor tienda virtual del mundo') }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylescar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Navbar fija en la parte superior */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #444;
+            z-index: 1000; /* Asegura que esté por encima del contenido */
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            color: #ffbb00; /* Color dorado */
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-toggler {
+            font-size: 1.5em;
+            background: none;
+            color: #ffbb00;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #ffbb00;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ff9000;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            background: #222;
+            border: 1px solid #444;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            list-style: none;
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .dropdown-item {
+            padding: 8px 15px;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: #333;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-button {
+            padding: 5px 10px;
+            background-color: #ffbb00;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #ff9000;
+        }
+
+        /* Footer fijo en la parte inferior */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 2px solid #444;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Compensar el espacio ocupado por el navbar superior */
+        .content {
+            padding-top: 60px; /* Altura del navbar */
+            padding-bottom: 50px; /* Altura del footer */
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+            }
+
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+        }
+
+        .Botoncerrar {
+            background-color: #ffbb00; /* Amarillo */
+            color: black;
+            padding: 8px 15px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="#">{{ _('Tienda Virtual') }}</a>
+            <button class="navbar-toggler" id="navbar-toggler">☰</button>
+            <div class="navbar-menu" id="navbar-menu">
+                <ul class="navbar-nav">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            </div>
+                                <!-- Cuadro para mostrar usuario y rol -->
+            <div class="user-info">
+                {% if session['user_id'] and session['user_name']  and  session['roles'] %}
+                <div class="user-box1">
+                    <p>{{ _('Usuario') }}: {{ session['user_name'] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ _('Rol') }}: 
+                        {% if session['roles'][0] == 'comprador' %}
+                            {{ _('Vendedor') }}
+                        {% else %}
+                            {{ session['roles'][0] }}
+                        {% endif %}
+                    </p>
+                </div>
+                {% endif %}
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{{ url_for('logout') }}" class="Botoncerrar">{{ _('Cerrar sesión') }}</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 {{ _('La mejor tienda virtual del mundo') }}</p>
+    </footer>
+
+    {% block scripts %}
+    <script>
+        // Menú desplegable para pantallas pequeñas
+        document.getElementById('navbar-toggler').addEventListener('click', () => {
+            const menu = document.getElementById('navbar-menu');
+            menu.classList.toggle('active');
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Registro de Usuario') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+
+    <!-- Imagen encima del formulario -->
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png" alt="Imagen de registro" class="register-image" width="150" height="150">
+
+    </div>
+
+    <div class="form-container">
+        <h2>{{ _('Registro de Usuario') }}</h2>
+        <form action="{{ url_for('register') }}" method="POST">
+            <label for="username">{{ _('Nombre de usuario:') }}</label>
+            <input type="text" name="username" required>
+            
+            <label for="email">{{ _('Correo electrónico:') }}</label>
+            <input type="email" name="email" required>
+            
+            <label for="password">{{ _('Contraseña:') }}</label>
+            <input type="password" name="password" required>
+            
+            <label for="rol">{{ _('Selecciona Rol:') }}</label>
+            <select name="rol" required>
+                <option value="1">{{ _('Comprador') }}</option>
+                <option value="2">{{ _('Vendedor') }}</option>
+            </select>
+            
+            <button type="submit">{{ _('Registrar') }}</button>
+        </form>
+        <a href="{{ url_for('login') }}">{{ _('¿Ya tienes una cuenta? Inicia sesión') }}</a>
+    </div>
+</body>
+</html>

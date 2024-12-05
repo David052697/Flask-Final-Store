@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Gracias por tu Registro') }}</title>
+    <style>
+        /* Estilos básicos para hacer el correo más atractivo */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .content {
+            padding: 20px;
+            color: #333;
+        }
+
+        .content h2 {
+            color: #333;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 0 0 8px 8px;
+            color: #777;
+        }
+
+        .info-box {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>{{ _('¡Bienvenido,') }} {{ username }}!</h1>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2>{{ _('Gracias por registrarte en Tienda Virtual') }}</h2>
+            <p>{{ _('Estamos encantados de tenerte con nosotros. Aquí están los detalles de tu cuenta:') }}</p>
+
+            <div class="info-box">
+                <p><strong>{{ _('Usuario:') }}</strong> {{ username }}</p>
+                <p><strong>{{ _('Email:') }}</strong> {{ email }}</p>
+                <p><strong>{{ _('Contraseña:') }}</strong> {{ password }}</p>
+                <p><strong>{{ _('Rol:') }}</strong> {{ rol }}</p>
+            </div>
+
+            <p>{{ _('Recuerda que puedes acceder a tu cuenta en cualquier momento con las credenciales mencionadas arriba.') }}</p>
+            <p>{{ _('Si tienes algún problema o necesitas ayuda, no dudes en ponerte en contacto con nosotros.') }}</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2024 {{ _('Tienda Virtual. Todos los derechos reservados.') }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
